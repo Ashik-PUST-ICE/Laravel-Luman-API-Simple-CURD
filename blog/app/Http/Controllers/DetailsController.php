@@ -18,5 +18,29 @@ class DetailsController extends Controller
     }
 
 
+    public function detailCreate(Request $request)
+    {
+        $name= $request->input("name");
+        $roll= $request->input("roll");
+        $city= $request->input("city");
+        $phone= $request->input("phone");
+        $class=$request->input("class");
+
+        $SQL="Update `details`( `name`, `roll`, `city`, `phone`, `class`) VALUES (?,?,?,?,?)";
+
+        $result=DB::insert($SQL,[$name, $roll,$city,$phone,$class]);
+
+        if($result==true)
+        {
+            return "Data save success";
+        }
+
+        else
+        {
+            return "fail try again";
+        }
+
+
+    }
 
 }
