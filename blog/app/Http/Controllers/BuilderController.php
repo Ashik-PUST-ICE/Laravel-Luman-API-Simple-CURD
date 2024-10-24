@@ -36,7 +36,71 @@ class BuilderController extends Controller
     return $result;
   }
 
+// use aggrigate function insert delete update
+function Insert(Request $request)
+{
+    $name = $request->input("name");
+    $roll = $request->input("roll");
+    $city = $request->input("city");
+    $phone = $request->input("phone");
+    $class = $request->input("class");
 
+    // Correct the array syntax for inserting data
+    $result = DB::table('details')->insert([
+        'name' => $name,
+        'roll' => $roll,
+        'city' => $city,
+        'phone' => $phone,
+        'class' => $class
+    ]);
+
+    if ($result) {
+        return "Data insert success";
+    } else {
+        return "Insert failed";
+    }
+}
+
+
+function Update(Request $request)
+{
+
+    $name = $request->input("name");
+    $roll = $request->input("roll");
+    $city = $request->input("city");
+    $phone = $request->input("phone");
+    $class = $request->input("class");
+    $id=  $request->input("id");
+
+    $result=DB::table('details')->where('id',$id)->update([
+        'name'=>$name,
+        'roll' => $roll,
+        'city' => $city,
+        'phone' => $phone,
+        'class' => $class
+    ]);
+
+    if ($result==true) {
+        return "Data update success";
+    } else {
+        return "update failed";
+    }
+
+}
+
+function Delete(Request $request)
+{
+    $id=  $request->input("id");
+
+    $result=DB::table('details')->where('id',$id)->delete();
+
+    if ($result==true) {
+        return "Data Dete success";
+    } else {
+        return "deleted failed";
+    }
+
+}
 
 
 }

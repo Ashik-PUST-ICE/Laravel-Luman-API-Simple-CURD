@@ -19,3 +19,12 @@ $router->get('/builder','BuilderController@singleValue');
 $router->get('/builder','BuilderController@pluckmethod');
 
 
+$router->post('/build','BuilderController@Insert');
+
+$router->delete('/build','BuilderController@Delete');
+
+$router->put('/build','BuilderController@Update');
+
+
+
+
